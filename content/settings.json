@@ -1,0 +1,37 @@
+{
+  "site_name": "R. Napitalai Limited",
+  "brand_name": "Napitalai Engineers",
+  "slogan": "Engineering for Economy & Elegance",
+  "site_url": "https://napitalaiengineers.com",
+  "description": "R. Napitalai Limited (Napitalai Engineers) delivers civil, structural, geotechnical and environmental engineering across Papua New Guinea from offices in Port Moresby, Lae, Kokopo and Goroka.",
+  "footer_blurb": "Civil, structural, geotechnical and environmental engineering across Papua New Guinea for more than 30 years.",
+  "phone": "+675 340 4932",
+  "email": "info@napitalai.com.pg",
+  "street_address": "Section 11, Lot 16, Purari Avenue, Gabutu Hill",
+  "city": "Port Moresby",
+  "region": "National Capital District",
+  "postal_address": "PO Box 1199, Boroko, NCD",
+  "map_link": "https://www.google.com/maps/search/?api=1&query=Gabutu+Hill+Port+Moresby",
+  "facebook": "https://www.facebook.com/napitalaiengineers/",
+  "linkedin": "",
+  "social_image": "/assets/img/og-image.jpg",
+  "branches": [
+    {"name": "Port Moresby", "label": "Head office", "address": "Section 11, Lot 16, Purari Avenue, Gabutu Hill, Port Moresby", "phone": "+675 340 4932", "email": "info@napitalai.com.pg"},
+    {"name": "Lae", "label": "Morobe Province", "address": "", "phone": "", "email": ""},
+    {"name": "Kokopo", "label": "East New Britain Province", "address": "", "phone": "", "email": ""},
+    {"name": "Goroka", "label": "Eastern Highlands Province", "address": "", "phone": "", "email": ""}
+  ],
+  "cta_title": "Planning a project?",
+  "cta_text": "Tell us what you are building. We will come back to you within two working days.",
+  "form": {
+    "provider": "web3forms",
+    "web3forms_access_key": "",
+    "endpoint": "",
+    "notify_email": "info@napitalai.com.pg",
+    "enquiry_types": ["Civil Engineering", "Structural Engineering", "Drafting", "Investigation & Reporting", "Construction Supervision", "Project Management", "Careers / graduate roles", "Other"]
+  },
+  "analytics": {
+    "ga4_measurement_id": "",
+    "search_console_verification": ""
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Structural Engineering",
+  "slug": "structural-engineering",
+  "order": 2,
+  "summary": "Design, checking and certification for buildings, wharves, towers, retaining walls and critical infrastructure.",
+  "points": [
+    "Structural design of buildings and industrial structures",
+    "Wharves, jetties and marine structures",
+    "Telecommunication tower foundations and lattice structures",
+    "Retaining walls and remedial works",
+    "QA/QC checking and certifying engineer roles"
+  ],
+  "image": "/assets/img/site/footing-rebar-cage-1600.jpg",
+  "image_alt": "Reinforcement cage set in a pad footing excavation"
+}

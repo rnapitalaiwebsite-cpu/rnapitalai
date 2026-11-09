@@ -1,0 +1,15 @@
+{
+  "title": "Civil Engineering",
+  "slug": "civil-engineering",
+  "order": 1,
+  "summary": "Site works, drainage, stormwater, minor roads and infrastructure designed for PNG's climate and terrain.",
+  "points": [
+    "Site planning and earthworks",
+    "Stormwater and drainage systems",
+    "Erosion and sediment control",
+    "Minor road, driveway and car park design",
+    "Pedestrian bridges"
+  ],
+  "image": "/assets/img/site/footbridge-approach-1600.jpg",
+  "image_alt": "Concrete approach steps to a suspension footbridge"
+}

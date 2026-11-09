@@ -1,0 +1,9 @@
+name = "rnl-cms-auth"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+[vars]
+ALLOWED_ORIGIN = "https://napitalaiengineers.com"
+# Add GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET as secrets:
+#   npx wrangler secret put GITHUB_CLIENT_ID
+#   npx wrangler secret put GITHUB_CLIENT_SECRET

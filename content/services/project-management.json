@@ -1,0 +1,14 @@
+{
+  "title": "Project Management",
+  "slug": "project-management",
+  "order": 6,
+  "summary": "End-to-end management, coordinating architects, contractors, consultants and government authorities.",
+  "points": [
+    "Concept to completion delivery",
+    "Contractor and consultant coordination",
+    "Liaison with government authorities",
+    "Programme and cost oversight"
+  ],
+  "image": "/assets/img/site/rnl3-1600.jpg",
+  "image_alt": "RNL engineers reviewing progress with the contractor"
+}

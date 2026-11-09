@@ -1,0 +1,11 @@
+# Optional: only if RNL chooses Netlify instead of GitHub Pages.
+# Note: on Netlify's Free plan each publish uses 15 of 300 monthly credits,
+# so about 20 saves a month before the site is paused. GitHub Pages has no such limit.
+[build]
+  command = "python3 build.py"
+  publish = "_site"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

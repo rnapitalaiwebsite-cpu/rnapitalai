@@ -1,0 +1,213 @@
+# Editing screen settings (Decap CMS).
+# Before launch, replace the two values marked SET-ME (see HANDOVER.md, step 3).
+backend:
+  name: github
+  repo: rnapitalaiwebsite-cpu/rnapitalai   # RNL's GitHub repository
+  branch: main
+  base_url: https://SET-ME.workers.dev  # RNL's sign-in helper (oauth-worker/)
+  auth_endpoint: auth
+  commit_messages:
+    create: "Add {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Remove {{collection}} “{{slug}}”"
+    uploadMedia: "Upload “{{path}}”"
+    deleteMedia: "Delete “{{path}}”"
+
+# Lets Eyemagine test the editor on a laptop with `npx decap-server`.
+local_backend: true
+
+site_url: https://napitalaiengineers.com
+display_url: https://napitalaiengineers.com
+logo_url: /assets/img/apple-touch-icon.png
+
+media_folder: static/assets/img/uploads
+public_folder: /assets/img/uploads
+
+collections:
+  # ---------------------------------------------------------------- Projects
+  - name: projects
+    label: Projects
+    label_singular: Project
+    description: Project portfolio. Tick "Featured" to show a project on the home page (the first three featured are used).
+    folder: content/projects
+    format: json
+    extension: json
+    create: true
+    slug: "{{fields.slug}}"
+    summary: "{{title}} — {{sector}}"
+    sortable_fields: [order, title, sector]
+    fields:
+      - {label: Title, name: title, widget: string}
+      - {label: Web address, name: slug, widget: string, pattern: ['^[a-z0-9-]+$', 'Lower-case letters, numbers and dashes only, e.g. kikori-jetty'], hint: "Becomes napitalaiengineers.com/projects/<this>/. Do not change after publishing."}
+      - {label: Display order, name: order, widget: number, value_type: int, default: 10}
+      - {label: Sector, name: sector, widget: select, options: [Maritime, Telecommunications, Infrastructure, Remedial Works, Education, Buildings, Civil Works, Bridges]}
+      - {label: Featured on home page, name: featured, widget: boolean, default: false}
+      - {label: Short summary, name: summary, widget: text, hint: "One or two sentences. Shown on cards and in Google results."}
+      - {label: Client, name: client, widget: string}
+      - {label: Location, name: location, widget: string, required: false}
+      - {label: RNL's role, name: role, widget: string, required: false}
+      - {label: Project value, name: value, widget: string, required: false, hint: "Leave empty if it should not be shown."}
+      - {label: Cover photo, name: cover_image, widget: image, required: false, hint: "Landscape photo, ideally 1600 px wide."}
+      - {label: Cover photo description, name: cover_alt, widget: string, required: false, hint: "What the photo shows, for screen readers and Google."}
+      - label: Photo gallery
+        name: gallery
+        widget: list
+        required: false
+        fields:
+          - {label: Photo, name: image, widget: image}
+          - {label: Caption, name: caption, widget: string, required: false}
+      - {label: Project details, name: body, widget: markdown, buttons: [bold, italic, link, heading-two, heading-three, bulleted-list, numbered-list], editor_components: [image]}
+
+  # ---------------------------------------------------------------- News
+  - name: news
+    label: News
+    label_singular: News post
+    folder: content/news
+    format: json
+    extension: json
+    create: true
+    slug: "{{fields.slug}}"
+    summary: "{{date}} — {{title}}"
+    sortable_fields: [date, title]
+    fields:
+      - {label: Title, name: title, widget: string}
+      - {label: Web address, name: slug, widget: string, pattern: ['^[a-z0-9-]+$', 'Lower-case letters, numbers and dashes only'], hint: "Becomes napitalaiengineers.com/news/<this>/"}
+      - {label: Date, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "D MMMM YYYY", time_format: false}
+      - {label: Short summary, name: summary, widget: text}
+      - {label: Main photo, name: image, widget: image, required: false}
+      - {label: Main photo description, name: image_alt, widget: string, required: false}
+      - {label: Story, name: body, widget: markdown, buttons: [bold, italic, link, heading-two, heading-three, bulleted-list, numbered-list], editor_components: [image]}
+
+  # ---------------------------------------------------------------- Team
+  - name: team
+    label: Team
+    label_singular: Team member
+    folder: content/team
+    format: json
+    extension: json
+    create: true
+    slug: "{{fields.slug}}"
+    summary: "{{name}} — {{role}}"
+    sortable_fields: [order, name]
+    fields:
+      - {label: Full name, name: name, widget: string}
+      - {label: Short id, name: slug, widget: string, pattern: ['^[a-z0-9-]+$', 'Lower-case letters, numbers and dashes only'], hint: "e.g. donald-lemeki"}
+      - {label: Display order, name: order, widget: number, value_type: int, default: 10}
+      - {label: Job title, name: role, widget: string}
+      - {label: Qualifications, name: credentials, widget: string, required: false}
+      - {label: Photo, name: photo, widget: image, required: false, hint: "Square head-and-shoulders photo works best."}
+      - {label: Show as lead profile, name: lead, widget: boolean, default: false}
+      - {label: Biography, name: bio, widget: markdown, required: false, buttons: [bold, italic, link, bulleted-list]}
+
+  # ---------------------------------------------------------------- Services
+  - name: services
+    label: Services
+    label_singular: Service
+    folder: content/services
+    format: json
+    extension: json
+    create: true
+    slug: "{{fields.slug}}"
+    summary: "{{order}}. {{title}}"
+    sortable_fields: [order, title]
+    fields:
+      - {label: Service name, name: title, widget: string}
+      - {label: Short id, name: slug, widget: string, pattern: ['^[a-z0-9-]+$', 'Lower-case letters, numbers and dashes only']}
+      - {label: Display order, name: order, widget: number, value_type: int}
+      - {label: Summary, name: summary, widget: text}
+      - {label: What it covers, name: points, widget: list, field: {label: Item, name: item, widget: string}}
+      - {label: Photo, name: image, widget: image, required: false}
+      - {label: Photo description, name: image_alt, widget: string, required: false}
+
+  # ---------------------------------------------------------------- Pages and settings
+  - name: pages
+    label: Pages and settings
+    files:
+      - label: Home page
+        name: home
+        file: content/home.json
+        fields:
+          - {label: Headline, name: hero_title, widget: string}
+          - {label: Intro line, name: hero_text, widget: text}
+          - {label: Main photo, name: hero_image, widget: image}
+          - {label: Main photo description, name: hero_image_alt, widget: string}
+          - label: Key figures
+            name: stats
+            widget: list
+            fields: [{label: Figure, name: value, widget: string}, {label: Label, name: label, widget: string}]
+          - {label: Intro eyebrow, name: intro_eyebrow, widget: string}
+          - {label: Intro heading, name: intro_title, widget: string}
+          - {label: Intro text, name: intro_text, widget: text}
+          - {label: Intro photo, name: intro_image, widget: image}
+          - {label: Intro photo description, name: intro_image_alt, widget: string}
+          - label: Why RNL
+            name: why
+            widget: list
+            fields: [{label: Heading, name: title, widget: string}, {label: Text, name: text, widget: text}]
+          - {label: Clients, name: clients, widget: list, field: {label: Client, name: client, widget: string}}
+          - {label: Photo section heading, name: gallery_title, widget: string}
+          - label: Site photos
+            name: gallery
+            widget: list
+            fields: [{label: Photo, name: image, widget: image}, {label: Caption, name: caption, widget: string, required: false}]
+      - label: About page
+        name: about
+        file: content/about.json
+        fields:
+          - {label: Heading, name: title, widget: string}
+          - {label: Intro line, name: lead, widget: text}
+          - {label: Main text, name: body, widget: markdown, buttons: [bold, italic, link, heading-two, bulleted-list]}
+          - {label: Photo, name: image, widget: image}
+          - {label: Photo description, name: image_alt, widget: string}
+          - {label: Scope of work, name: scope, widget: list, field: {label: Item, name: item, widget: string}}
+          - {label: Director's statement, name: statement, widget: text}
+          - {label: Statement by, name: statement_name, widget: string}
+          - {label: Their title, name: statement_role, widget: string}
+          - {label: Team photo, name: team_photo, widget: image, required: false}
+          - {label: Team photo caption, name: team_photo_caption, widget: string, required: false}
+      - label: Company details and offices
+        name: settings
+        file: content/settings.json
+        fields:
+          - {label: Company name, name: site_name, widget: string}
+          - {label: Trading name, name: brand_name, widget: string}
+          - {label: Slogan, name: slogan, widget: string}
+          - {label: Website address, name: site_url, widget: string}
+          - {label: Description for Google, name: description, widget: text}
+          - {label: Footer text, name: footer_blurb, widget: text}
+          - {label: Main phone, name: phone, widget: string}
+          - {label: Main email, name: email, widget: string}
+          - {label: Street address, name: street_address, widget: string}
+          - {label: City, name: city, widget: string}
+          - {label: Region, name: region, widget: string}
+          - {label: Postal address, name: postal_address, widget: string}
+          - {label: Google Maps link, name: map_link, widget: string}
+          - {label: Facebook page, name: facebook, widget: string, required: false}
+          - {label: LinkedIn page, name: linkedin, widget: string, required: false}
+          - {label: Sharing image, name: social_image, widget: image, hint: "Shown when the site is shared on WhatsApp, Facebook or LinkedIn. 1200 x 630 px."}
+          - label: Offices
+            name: branches
+            widget: list
+            fields:
+              - {label: Town, name: name, widget: string}
+              - {label: Label, name: label, widget: string}
+              - {label: Address, name: address, widget: string, required: false}
+              - {label: Phone, name: phone, widget: string, required: false}
+              - {label: Email, name: email, widget: string, required: false}
+          - {label: Enquiry banner heading, name: cta_title, widget: string}
+          - {label: Enquiry banner text, name: cta_text, widget: text}
+          - label: Enquiry form
+            name: form
+            widget: object
+            fields:
+              - {label: Form service, name: provider, widget: select, options: [web3forms, netlify, endpoint, email-app]}
+              - {label: Web3Forms access key, name: web3forms_access_key, widget: string, required: false}
+              - {label: Custom endpoint, name: endpoint, widget: string, required: false}
+              - {label: Email that receives enquiries, name: notify_email, widget: string}
+              - {label: Enquiry types, name: enquiry_types, widget: list, field: {label: Type, name: type, widget: string}}
+          - label: Search and analytics
+            name: analytics
+            widget: object
+            fields:
+              - {label: Google Analytics 4 measurement ID, name: ga4_measurement_id, widget: string, required: false, hint: "Starts with G-"}
+              - {label: Google Search Console verification code, name: search_console_verification, widget: string, required: false}
