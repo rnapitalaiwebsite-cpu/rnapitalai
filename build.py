@@ -367,7 +367,11 @@ def build_home():
     why = "".join(f'<div><h3>{esc(w["title"])}</h3><p>{esc(w["text"])}</p></div>' for w in h["why"])
     clients = "".join(f"<li>{esc(c)}</li>" for c in h["clients"])
     Page.path = "/"
-    hero = img_tag(h["hero_image"], h.get("hero_image_alt"), "hero-img", "100vw", lazy=False, extra=' fetchpriority="high"')
+    slides = [x for x in (h.get("hero_slides") or []) if x.get("image")] or [{"image": h["hero_image"], "alt": h.get("hero_image_alt")}]
+    hero = '<div class="hero-slides" data-interval="6000">' + "".join(
+        img_tag(x["image"], x.get("alt"), "hero-img hero-slide" + (" is-active" if i == 0 else ""), "100vw",
+                lazy=i > 0, extra=' fetchpriority="high"' if i == 0 else ' aria-hidden="true"')
+        for i, x in enumerate(slides)) + "</div>"
 
     def body():
         return f"""<section class="hero">

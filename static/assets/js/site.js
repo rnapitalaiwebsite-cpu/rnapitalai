@@ -9,6 +9,23 @@
     });
   }
 
+  // Hero slideshow: fades between photos; stays on the first for reduced-motion users
+  var deck = document.querySelector(".hero-slides");
+  if (deck) {
+    var slides = deck.querySelectorAll(".hero-slide");
+    var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (slides.length > 1 && !still) {
+      var at = 0;
+      slides.forEach(function (img) { img.loading = "eager"; });
+      setInterval(function () {
+        if (document.hidden) return;
+        slides[at].classList.remove("is-active");
+        at = (at + 1) % slides.length;
+        slides[at].classList.add("is-active");
+      }, parseInt(deck.getAttribute("data-interval"), 10) || 6000);
+    }
+  }
+
   // Project filter
   var chips = document.querySelectorAll(".filters .chip");
   chips.forEach(function (chip) {

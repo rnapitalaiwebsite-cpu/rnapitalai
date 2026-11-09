@@ -4,10 +4,22 @@
   "hero_image": "/assets/img/site/rnl17-1600.jpg",
   "hero_image_alt": "RNL engineers inspecting excavation works on site",
   "stats": [
-    {"value": "30+", "label": "Years of practice"},
-    {"value": "4", "label": "Offices across PNG"},
-    {"value": "20+", "label": "Long-term clients"},
-    {"value": "8", "label": "TVET colleges on the ADB programme"}
+    {
+      "value": "30+",
+      "label": "Years of practice"
+    },
+    {
+      "value": "4",
+      "label": "Offices across PNG"
+    },
+    {
+      "value": "20+",
+      "label": "Long-term clients"
+    },
+    {
+      "value": "8",
+      "label": "TVET colleges on the ADB programme"
+    }
   ],
   "intro_eyebrow": "Who we are",
   "intro_title": "One of PNG's most established engineering consultancies",
@@ -15,18 +27,83 @@
   "intro_image": "/assets/img/site/rnl14-1600.jpg",
   "intro_image_alt": "RNL team reviewing drawings on site",
   "why": [
-    {"title": "Locally rooted", "text": "Headquartered in Port Moresby with offices in Lae, Kokopo and Goroka. We know the conditions, codes and communities we design for."},
-    {"title": "Internationally trusted", "text": "Engaged on ADB-funded projects, meeting the procurement and quality standards of international development banks."},
-    {"title": "Registered engineers", "text": "Led by a Fellow of the Institution of Engineers PNG and Chartered Professional Engineer, so work meets codes of practice and public safety standards."}
+    {
+      "title": "Locally rooted",
+      "text": "Headquartered in Port Moresby with offices in Lae, Kokopo and Goroka. We know the conditions, codes and communities we design for."
+    },
+    {
+      "title": "Internationally trusted",
+      "text": "Engaged on ADB-funded projects, meeting the procurement and quality standards of international development banks."
+    },
+    {
+      "title": "Registered engineers",
+      "text": "Led by a Fellow of the Institution of Engineers PNG and Chartered Professional Engineer, so work meets codes of practice and public safety standards."
+    }
   ],
-  "clients": ["PNG Ports", "Telikom PNG", "PNG DataCo", "OTML", "PJV", "BSP", "Water PNG", "Curtain Brothers", "BPNG", "Digicel Foundation", "Ela Motors", "MVIL", "PNG Customs", "Bishop Brothers", "Kwik Built", "NCDC", "NAC", "NRI", "EPO"],
+  "clients": [
+    "PNG Ports",
+    "Telikom PNG",
+    "PNG DataCo",
+    "OTML",
+    "PJV",
+    "BSP",
+    "Water PNG",
+    "Curtain Brothers",
+    "BPNG",
+    "Digicel Foundation",
+    "Ela Motors",
+    "MVIL",
+    "PNG Customs",
+    "Bishop Brothers",
+    "Kwik Built",
+    "NCDC",
+    "NAC",
+    "NRI",
+    "EPO"
+  ],
   "gallery_title": "From our sites",
   "gallery": [
-    {"image": "/assets/img/site/waterfront-tower-crane-1600.jpg", "caption": "Reinforcement fixing on a waterfront development"},
-    {"image": "/assets/img/site/footbridge-span-1600.jpg", "caption": "Suspension footbridge in the Highlands"},
-    {"image": "/assets/img/site/piling-site-excavator-1600.jpg", "caption": "Piling and pile-cap works"},
-    {"image": "/assets/img/site/level-survey-1600.jpg", "caption": "Levelling survey for a site investigation"},
-    {"image": "/assets/img/site/baseplate-rebar-cage-1600.jpg", "caption": "Pile-cap reinforcement with holding-down bolts"},
-    {"image": "/assets/img/site/highlands-building-works-1600.jpg", "caption": "Blockwork construction for a Highlands facility"}
+    {
+      "image": "/assets/img/site/waterfront-tower-crane-1600.jpg",
+      "caption": "Reinforcement fixing on a waterfront development"
+    },
+    {
+      "image": "/assets/img/site/footbridge-span-1600.jpg",
+      "caption": "Suspension footbridge in the Highlands"
+    },
+    {
+      "image": "/assets/img/site/piling-site-excavator-1600.jpg",
+      "caption": "Piling and pile-cap works"
+    },
+    {
+      "image": "/assets/img/site/level-survey-1600.jpg",
+      "caption": "Levelling survey for a site investigation"
+    },
+    {
+      "image": "/assets/img/site/baseplate-rebar-cage-1600.jpg",
+      "caption": "Pile-cap reinforcement with holding-down bolts"
+    },
+    {
+      "image": "/assets/img/site/highlands-building-works-1600.jpg",
+      "caption": "Blockwork construction for a Highlands facility"
+    }
+  ],
+  "hero_slides": [
+    {
+      "image": "/assets/img/site/rnl17-1600.jpg",
+      "alt": "RNL engineers inspecting excavation works on site"
+    },
+    {
+      "image": "/assets/img/site/waterfront-tower-crane-1600.jpg",
+      "alt": "Reinforcement fixing on a waterfront development"
+    },
+    {
+      "image": "/assets/img/site/piling-site-excavator-1600.jpg",
+      "alt": "Piling and pile-cap works"
+    },
+    {
+      "image": "/assets/img/site/waterfront-harbour-view-1600.jpg",
+      "alt": "Waterfront building works overlooking the harbour"
+    }
   ]
 }

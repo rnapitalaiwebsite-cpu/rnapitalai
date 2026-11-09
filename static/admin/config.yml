@@ -131,6 +131,11 @@ collections:
           - {label: Intro line, name: hero_text, widget: text}
           - {label: Main photo, name: hero_image, widget: image}
           - {label: Main photo description, name: hero_image_alt, widget: string}
+          - label: Slideshow photos
+            name: hero_slides
+            widget: list
+            hint: "Photos that fade in turn at the top of the home page. Landscape photos work best; 3 to 5 is plenty."
+            fields: [{label: Photo, name: image, widget: image}, {label: Description, name: alt, widget: string}]
           - label: Key figures
             name: stats
             widget: list

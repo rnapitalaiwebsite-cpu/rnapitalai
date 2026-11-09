@@ -308,3 +308,10 @@ address { font-style: normal; margin-bottom: 1em; }
 .wide-figure img { display: block; width: 100%; max-height: 560px; object-fit: cover; object-position: center 30%; border-radius: var(--radius); }
 .wide-figure figcaption { margin-top: 10px; font-size: .9rem; color: var(--muted); }
 .project-hero { display: block; width: 100%; }
+
+/* Hero slideshow: photos fade in turn with a slow zoom */
+.hero-slides { position: absolute; inset: 0; }
+.hero-slide { opacity: 0; transition: opacity 1.4s ease; transform: scale(1); }
+.hero-slide.is-active { opacity: 1; animation: hero-zoom 9s ease-out both; }
+@keyframes hero-zoom { from { transform: scale(1.08); } to { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .hero-slide.is-active { animation: none; } .hero-slide { transition: none; } }
