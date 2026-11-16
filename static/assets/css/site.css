@@ -326,3 +326,17 @@ address { font-style: normal; margin-bottom: 1em; }
 .staff-photo { width: 64px; height: 64px; flex: none; border-radius: 50%; object-fit: cover; }
 .staff-initials { display: flex; align-items: center; justify-content: center; background: var(--navy); color: var(--yellow); font: 800 1.15rem var(--head); }
 .preview-bar a { color: inherit; margin-left: 6px; white-space: nowrap; }
+
+/* Share buttons and Facebook feed (media boost) */
+.share { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); }
+.facts .share { border-top-color: rgba(0,0,0,.08); }
+.share-label { width: 100%; margin: 0 0 4px; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+.share-btn { display: inline-block; font: inherit; font-size: .9rem; font-weight: 600; padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--navy); color: var(--navy); background: #fff; text-decoration: none; cursor: pointer; }
+.share-btn:hover { background: var(--navy); color: #fff; }
+.facts .share-btn { flex: 1 1 calc(50% - 8px); text-align: center; width: auto; }
+.news-layout { display: grid; grid-template-columns: minmax(0, 1fr) 500px; gap: 48px; align-items: start; }
+.fb-feed { position: sticky; top: 100px; min-width: 0; }
+.fb-title { font-size: 1.15rem; margin: 0 0 12px; }
+.fb-feed iframe { width: 100%; max-width: 500px; background: var(--tint); border-radius: var(--radius); }
+.fb-feed p { margin-top: 10px; }
+@media (max-width: 960px) { .news-layout { grid-template-columns: 1fr; } .fb-feed { position: static; } }

@@ -26,6 +26,24 @@
     }
   }
 
+  // Share buttons: use this page's own address (works on the demo and the live site)
+  document.querySelectorAll(".share").forEach(function (box) {
+    var here = location.href.split("#")[0];
+    var title = box.getAttribute("data-share-title") || document.title;
+    var u = encodeURIComponent(here), t = encodeURIComponent(title);
+    box.querySelectorAll("[data-share]").forEach(function (el) {
+      var kind = el.getAttribute("data-share");
+      if (kind === "facebook") el.href = "https://www.facebook.com/sharer/sharer.php?u=" + u;
+      if (kind === "linkedin") el.href = "https://www.linkedin.com/sharing/share-offsite/?url=" + u;
+      if (kind === "whatsapp") el.href = "https://wa.me/?text=" + t + "%20" + u;
+      if (kind === "copy") el.addEventListener("click", function () {
+        var done = function () { el.textContent = "Link copied"; setTimeout(function () { el.textContent = "Copy link"; }, 2000); };
+        if (navigator.clipboard) navigator.clipboard.writeText(here).then(done, function () { prompt("Copy this link:", here); });
+        else prompt("Copy this link:", here);
+      });
+    });
+  });
+
   // Project filter
   var chips = document.querySelectorAll(".filters .chip");
   chips.forEach(function (chip) {

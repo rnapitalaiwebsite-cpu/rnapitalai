@@ -254,7 +254,7 @@ def header(active):
         f'<li><a href="{link(u)}"{" aria-current=" + chr(34) + "page" + chr(34) if active == u else ""}>{t}</a></li>'
         for t, u in NAV)
     bar = ('<div class="preview-bar" role="note"><strong>Staging site</strong> for review by R. Napitalai Limited. '
-           f'Not yet live; enquiries are not sent. <a href="{asset("/preview/index.html")}"><strong>Board preview: phases 2 and 3 →</strong></a></div>') if ARGS.staging else ""
+           f'Not yet live; enquiries are not sent. <a href="{asset("/preview/index.html")}"><strong>Board preview: media, staff and client systems →</strong></a></div>') if ARGS.staging else ""
     return f"""<a class="skip" href="#main">Skip to content</a>
   {bar}
   <header class="site-header">
@@ -517,7 +517,7 @@ def build_projects():
             return f"""{page_head('<a href="' + link('/projects/') + '">Projects</a> · ' + esc(p.get('sector')), p['title'], p['summary'])}
 <section class="section"><div class="wrap project-layout">
   <div class="prose">{hero}{md(p.get('body'))}</div>
-  <aside class="facts"><dl>{dl}</dl><a class="btn btn-primary" href="{link('/contact/')}">Discuss a similar project</a></aside>
+  <aside class="facts"><dl>{dl}</dl><a class="btn btn-primary" href="{link('/contact/')}">Discuss a similar project</a>{share_block(p['title'], '/projects/' + p['slug'] + '/')}</aside>
 </div></section>
 {f'<section class="section"><div class="wrap">{pics}</div></section>' if pics else ''}
 <section class="section section-alt"><div class="wrap">
@@ -566,6 +566,32 @@ def build_team():
     write("/team/", "Our team", "Meet the engineers, draftspeople and operations staff of R. Napitalai Limited.", body, active="/team/")
 
 
+def share_block(title, path):
+    """Share buttons. site.js swaps in the page's own address, so they also work on the demo."""
+    url = SITE_URL + path
+    from urllib.parse import quote
+    u, t = quote(url, safe=""), quote(title, safe="")
+    return (f'<div class="share" data-share-title="{esc(title)}"><p class="share-label">Share this</p>'
+            f'<a class="share-btn" data-share="facebook" href="https://www.facebook.com/sharer/sharer.php?u={u}" rel="noopener" target="_blank">Facebook</a>'
+            f'<a class="share-btn" data-share="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url={u}" rel="noopener" target="_blank">LinkedIn</a>'
+            f'<a class="share-btn" data-share="whatsapp" href="https://wa.me/?text={t}%20{u}" rel="noopener" target="_blank">WhatsApp</a>'
+            f'<button class="share-btn" type="button" data-share="copy" data-url="{esc(url)}">Copy link</button></div>')
+
+
+def facebook_feed():
+    fb = SET.get("facebook")
+    if not fb:
+        return ""
+    from urllib.parse import quote
+    src = ("https://www.facebook.com/plugins/page.php?href=" + quote(fb, safe="")
+           + "&tabs=timeline&width=500&height=640&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false")
+    return (f'<aside class="fb-feed"><h2 class="fb-title">Latest from our Facebook page</h2>'
+            f'<iframe title="R. Napitalai Limited on Facebook" src="{esc(src)}" width="500" height="640" loading="lazy" '
+            f'style="border:none;overflow:hidden" scrolling="no" allowfullscreen="true" '
+            f'allow="clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>'
+            f'<p><a class="text-link" href="{esc(fb)}" rel="noopener">Follow us on Facebook →</a></p></aside>')
+
+
 def build_news():
     items = "".join(
         f'<article class="news-item"><time datetime="{esc(n["date"])}">{fmt_date(n["date"])}</time>'
@@ -574,7 +600,7 @@ def build_news():
 
     def body():
         return f"""{page_head('News', 'News and project updates', 'Milestones, company news and updates from our projects.')}
-<section class="section"><div class="wrap narrow">{items}</div></section>"""
+<section class="section"><div class="wrap news-layout"><div>{items}</div>{facebook_feed()}</div></section>"""
     write("/news/", "News", "News and project updates from R. Napitalai Limited.", body, active="/news/")
 
     for n in NEWS:
@@ -583,7 +609,7 @@ def build_news():
             return (f'<section class="page-head"><div class="wrap narrow"><p class="eyebrow eyebrow-light"><a href="{link("/news/")}">News</a> · '
                     f'<time datetime="{esc(n["date"])}">{fmt_date(n["date"])}</time></p><h1>{esc(n["title"])}</h1>'
                     f'<p class="lead">{esc(n.get("summary"))}</p></div></section>'
-                    f'<section class="section"><div class="wrap narrow prose">{pic}{md(n.get("body"))}</div></section>{cta()}')
+                    f'<section class="section"><div class="wrap narrow prose">{pic}{md(n.get("body"))}{share_block(n["title"], "/news/" + n["slug"] + "/")}</div></section>{cta()}')
         write(f"/news/{n['slug']}/", n["title"], n.get("summary", ""), body, active="/news/", image=n.get("image"),
               og_type="article", lastmod=str(n.get("date"))[:10])
 

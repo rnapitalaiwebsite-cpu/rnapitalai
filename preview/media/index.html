@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Media and news preview | R. Napitalai Limited</title>
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../preview.css">
+</head>
+<body>
+<div class="pv-bar"><strong>Board preview · Phase 1 media</strong> · How RNL staff update the website · Nothing is saved or sent · <a href="../index.html">All previews</a> · <a href="../../news/index.html">See the News page</a></div>
+<div class="top"><img src="../../assets/img/mark-light.svg" alt=""><b>RNL Website · Editing screen</b><span class="sp"></span><span class="badge">Demo</span><span class="who">Signed in as Communication &amp; Compliance</span></div>
+<div class="wrap">
+  <div class="tabs" role="tablist" aria-label="Editing screen sections">
+    <button role="tab" id="t-write" aria-controls="p-write" data-hash="write">Write a news post</button>
+    <button role="tab" id="t-list" aria-controls="p-list" data-hash="posts">News and projects</button>
+    <button role="tab" id="t-photos" aria-controls="p-photos" data-hash="photos">Photo library</button>
+    <button role="tab" id="t-share" aria-controls="p-share" data-hash="share">Share and schedule</button>
+  </div>
+
+  <!-- 1. Write -->
+  <section class="panel" id="p-write" role="tabpanel" aria-labelledby="t-write">
+    <div class="editor">
+      <form class="card form-col" id="post-form">
+        <h2 style="font-size:22px">New news post</h2>
+        <label for="f-title">Title</label>
+        <input id="f-title" value="Level 2 slab poured at the waterfront development">
+        <div class="two">
+          <div><label for="f-date">Date</label><input id="f-date" type="date" value="2026-11-24"></div>
+          <div><label for="f-type">Type</label><select id="f-type"><option>Project update</option><option>Company news</option><option>Careers</option></select></div>
+        </div>
+        <label>Main photo <span class="muted">(tap one, or upload your own)</span></label>
+        <div class="pick" id="pick">
+          <button type="button" class="pick-img on" data-src="../../assets/img/site/waterfront-slab-works-800.jpg"><img src="../../assets/img/site/waterfront-slab-works-800.jpg" alt="Slab works"></button>
+          <button type="button" class="pick-img" data-src="../../assets/img/site/waterfront-tower-crane-800.jpg"><img src="../../assets/img/site/waterfront-tower-crane-800.jpg" alt="Tower crane"></button>
+          <button type="button" class="pick-img" data-src="../../assets/img/site/footbridge-span-800.jpg"><img src="../../assets/img/site/footbridge-span-800.jpg" alt="Footbridge"></button>
+          <label class="pick-upload">+ Upload<input type="file" accept="image/*" id="f-upload"></label>
+        </div>
+        <label for="f-summary">Short summary <span class="muted">(shown on the News page and when shared)</span></label>
+        <textarea id="f-summary" rows="2">Our engineers inspected the reinforcement and approved the pour for the level 2 slab this morning.</textarea>
+        <label for="f-body">Story</label>
+        <textarea id="f-body" rows="5">The level 2 slab and columns at the waterfront development were poured today, keeping the project on schedule for completion in March.
+
+RNL’s site engineers inspected the reinforcement before the pour and will carry out the next inspection on Friday.</textarea>
+        <label class="check"><input type="checkbox" id="f-share" checked> Ready to share on Facebook, LinkedIn and WhatsApp after publishing</label>
+        <div class="row" style="margin-top:6px; flex-wrap:wrap">
+          <button class="btn o" type="button" id="draft-btn">Save draft</button>
+          <button class="btn" type="submit" id="publish-btn">Publish</button>
+        </div>
+        <div id="publish-steps" class="pub" hidden>
+          <p><span class="ok-mark">✓</span> Saved to RNL’s website records, with a full history</p>
+          <p><span class="ok-mark">✓</span> Website updated within about 2 minutes, with the photo resized for fast loading</p>
+          <p><span class="ok-mark">✓</span> Added to the News page and Google’s sitemap</p>
+          <p id="pub-share"><span class="ok-mark">✓</span> Ready to share: open the <b>Share and schedule</b> tab</p>
+          <p class="muted" style="font-size:13px">Demo only: nothing was published.</p>
+        </div>
+        <p class="status" id="draft-status" role="status"></p>
+      </form>
+
+      <div class="col">
+        <div class="card">
+          <p class="eyebrow-s">On the News page</p>
+          <article class="news-card">
+            <img id="pv-img" src="../../assets/img/site/waterfront-slab-works-800.jpg" alt="">
+            <div>
+              <p class="muted" style="font-size:13px" id="pv-meta">24 November 2026 · Project update</p>
+              <h3 id="pv-title">Level 2 slab poured at the waterfront development</h3>
+              <p class="muted" id="pv-summary" style="font-size:14px">Our engineers inspected the reinforcement and approved the pour for the level 2 slab this morning.</p>
+            </div>
+          </article>
+        </div>
+        <div class="card">
+          <p class="eyebrow-s">When shared on WhatsApp, Facebook or LinkedIn</p>
+          <div class="sharecard">
+            <img id="sh-img" src="../../assets/img/site/waterfront-slab-works-800.jpg" alt="">
+            <div class="sharecard-body">
+              <p class="muted" style="font-size:12px;text-transform:uppercase;letter-spacing:.05em">napitalaiengineers.com</p>
+              <p style="font-weight:700" id="sh-title">Level 2 slab poured at the waterfront development</p>
+              <p class="muted" style="font-size:13px" id="sh-summary">Our engineers inspected the reinforcement and approved the pour for the level 2 slab this morning.</p>
+            </div>
+          </div>
+        </div>
+        <p class="muted" style="font-size:13px">The previews update as you type. Try changing the title or picking another photo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. List -->
+  <section class="panel" id="p-list" role="tabpanel" aria-labelledby="t-list" hidden>
+    <div class="row" style="flex-wrap:wrap"><h2 style="font-size:22px">News and projects</h2><button class="btn" type="button" data-goto="t-write">+ New news post</button></div>
+    <div class="card" style="padding:6px;margin-top:14px">
+      <div class="table-scroll"><table>
+        <tr><th>Title</th><th>Section</th><th>Date</th><th>Status</th><th></th></tr>
+        <tr><td>Welcome to our new website</td><td>News</td><td>9 Nov 2026</td><td><span class="pill ok">Published</span></td><td class="n"><button class="btn o sm" type="button" data-goto="t-write">Edit</button></td></tr>
+        <tr><td>Level 2 slab poured at the waterfront development <span class="muted">(sample)</span></td><td>News</td><td>24 Nov 2026</td><td><span class="pill warn">Draft</span></td><td class="n"><button class="btn o sm" type="button" data-goto="t-write">Edit</button></td></tr>
+        <tr><td>Graduate engineer vacancies <span class="muted">(sample)</span></td><td>News · Careers</td><td>–</td><td><span class="pill warn">Draft</span></td><td class="n"><button class="btn o sm" type="button" data-goto="t-write">Edit</button></td></tr>
+        <tr><td>Wharves and Jetties Programme</td><td>Projects</td><td>–</td><td><span class="pill ok">Published</span></td><td class="n"><button class="btn o sm" type="button" data-goto="t-write">Edit</button></td></tr>
+        <tr><td>Telikom PNG Country Roll-Out</td><td>Projects</td><td>–</td><td><span class="pill ok">Published</span></td><td class="n"><button class="btn o sm" type="button" data-goto="t-write">Edit</button></td></tr>
+      </table></div>
+    </div>
+    <div class="facts3">
+      <div class="card"><b>Who can edit</b><p class="muted">Staff named by RNL, each with their own sign-in.</p></div>
+      <div class="card"><b>What they can change</b><p class="muted">News, projects, team, services, office details, home page photos and text.</p></div>
+      <div class="card"><b>Nothing is lost</b><p class="muted">Every change is recorded with who made it, and can be undone.</p></div>
+    </div>
+  </section>
+
+  <!-- 3. Photos -->
+  <section class="panel" id="p-photos" role="tabpanel" aria-labelledby="t-photos" hidden>
+    <div class="row" style="flex-wrap:wrap"><h2 style="font-size:22px">Photo library</h2><label class="btn" style="cursor:pointer">Upload photos<input type="file" accept="image/*" multiple id="lib-upload" hidden></label></div>
+    <p class="muted" style="margin-top:6px">Upload straight from a phone or computer. Photos are resized automatically so pages load quickly on slower connections. Try it: your photo stays on your device.</p>
+    <div class="library" id="library">
+      <figure><img src="../../assets/img/site/waterfront-tower-crane-800.jpg" alt=""><figcaption>Waterfront development</figcaption></figure>
+      <figure><img src="../../assets/img/site/piling-site-excavator-800.jpg" alt=""><figcaption>Piling and pile caps</figcaption></figure>
+      <figure><img src="../../assets/img/site/footbridge-span-800.jpg" alt=""><figcaption>Highlands footbridge</figcaption></figure>
+      <figure><img src="../../assets/img/site/level-survey-800.jpg" alt=""><figcaption>Levelling survey</figcaption></figure>
+      <figure><img src="../../assets/img/site/highlands-building-works-800.jpg" alt=""><figcaption>Highlands building works</figcaption></figure>
+      <figure><img src="../../assets/img/site/rnl-site-team-800.jpg" alt=""><figcaption>RNL site team</figcaption></figure>
+      <figure><img src="../../assets/img/site/baseplate-rebar-cage-800.jpg" alt=""><figcaption>Pile cap reinforcement</figcaption></figure>
+      <figure><img src="../../assets/img/site/wall-survey-800.jpg" alt=""><figcaption>Wall condition survey</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 4. Share -->
+  <section class="panel" id="p-share" role="tabpanel" aria-labelledby="t-share" hidden>
+    <h2 style="font-size:22px">From one news post to every channel</h2>
+    <div class="flow">
+      <div class="card"><p class="num-s">1</p><b>Publish on the website</b><p class="muted">Staff write the post once, in the editing screen.</p></div>
+      <div class="card"><p class="num-s">2</p><b>Share in one tap</b><p class="muted">Every news post and project page has share buttons, with its photo and summary.</p>
+        <div class="sharebtns"><span>Facebook</span><span>LinkedIn</span><span>WhatsApp</span><span>Copy link</span></div></div>
+      <div class="card"><p class="num-s">3</p><b>Schedule ahead</b><p class="muted">Posts are planned for the week in Meta Business Suite and LinkedIn, both free. Eyemagine sets them up and trains staff.</p></div>
+      <div class="card"><p class="num-s">4</p><b>Measure</b><p class="muted">Google Analytics shows visits and enquiries that came from Facebook, LinkedIn and WhatsApp.</p></div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <div class="row" style="flex-wrap:wrap"><b>Example week of planned posts</b><span class="muted" style="font-size:13px">Planned in Meta Business Suite · example only</span></div>
+      <div class="week">
+        <div><p class="day">Mon</p><p class="post fb">Facebook · Project update: level 2 slab poured</p></div>
+        <div><p class="day">Tue</p></div>
+        <div><p class="day">Wed</p><p class="post li">LinkedIn · Graduate engineer vacancies</p></div>
+        <div><p class="day">Thu</p></div>
+        <div><p class="day">Fri</p><p class="post fb">Facebook · Site photo of the week: Highlands footbridge</p></div>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:14px">See it working on the real site: the <a href="../../news/index.html">News page</a> shows RNL’s latest Facebook posts, and every news post and project has share buttons.</p>
+  </section>
+</div>
+<script src="../preview.js"></script>
+</body>
+</html>
