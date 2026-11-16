@@ -315,3 +315,13 @@ address { font-style: normal; margin-bottom: 1em; }
 .hero-slide.is-active { opacity: 1; animation: hero-zoom 9s ease-out both; }
 @keyframes hero-zoom { from { transform: scale(1.08); } to { transform: scale(1); } }
 @media (prefers-reduced-motion: reduce) { .hero-slide.is-active { animation: none; } .hero-slide { transition: none; } }
+
+/* Team page: staff grouped by section */
+.staff-group + .staff-group, .team + .staff-group { margin-top: 48px; }
+.staff-group-title { font-size: 1.25rem; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid var(--yellow); display: inline-block; }
+.staff-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+.staff-card { display: flex; align-items: center; gap: 16px; padding: 16px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; min-width: 0; }
+.staff-card h3 { font-size: 1.02rem; margin: 0 0 2px; }
+.staff-card .person-role { margin: 0; font-size: .92rem; }
+.staff-photo { width: 64px; height: 64px; flex: none; border-radius: 50%; object-fit: cover; }
+.staff-initials { display: flex; align-items: center; justify-content: center; background: var(--navy); color: var(--yellow); font: 800 1.15rem var(--head); }

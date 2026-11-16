@@ -263,7 +263,7 @@ def header(active):
     <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle-bar"></span><span class="sr">Menu</span></button>
     <nav id="site-nav" class="site-nav" aria-label="Main">
       <ul>{items}</ul>
-      <a class="btn btn-accent nav-cta" href="{link('/contact/')}">Request a quote</a>
+      <a class="btn btn-accent nav-cta" href="{link('/contact/')}">Enquiries</a>
     </nav>
   </div>
 </header>"""
@@ -384,7 +384,7 @@ def build_home():
     </div>
     <h1>{esc(h['hero_title'])}</h1>
     <p class="hero-text">{esc(h['hero_text'])}</p>
-    <div class="hero-actions"><a class="btn btn-accent" href="{link('/projects/')}">See our projects</a><a class="btn btn-ghost" href="{link('/contact/')}">Request a quote</a></div>
+    <div class="hero-actions"><a class="btn btn-accent" href="{link('/projects/')}">See our projects</a><a class="btn btn-ghost" href="{link('/contact/')}">Enquiries</a></div>
   </div>
 </section>
 <section class="stats" aria-label="RNL at a glance"><div class="wrap stats-grid">{stats}</div></section>
@@ -453,12 +453,6 @@ def build_about():
 <section class="section section-alt"><div class="wrap">
   <h2 class="section-title">Our scope of work</h2>
   <ul class="scope">{scope}</ul>
-</div></section>
-<section class="section"><div class="wrap narrow">
-  <p class="eyebrow">Director's statement</p>
-  <blockquote class="quote">{paras(a['statement'])}
-    <footer><strong>{esc(a['statement_name'])}</strong><span>{esc(a['statement_role'])}</span></footer>
-  </blockquote>
 </div></section>
 {team_photo}
 <section class="section"><div class="wrap">
@@ -533,28 +527,43 @@ def build_projects():
         write(f"/projects/{p['slug']}/", p["title"], p["summary"], body, active="/projects/", image=p.get("cover_image"))
 
 
+GROUP_ORDER = ["Project management", "Operations", "Engineering", "Drafting", "Office"]
+
+
 def build_team():
     Page.path = "/team/"
-    people = []
+
+    def initials(name):
+        w = re.sub(r"^(Mr|Mrs|Ms|Dr)\s+", "", name).split()
+        return (w[0][0] + (w[-1][0] if len(w) > 1 else "")).upper()
+
+    def card(t):
+        photo = (img_tag(t["photo"], t["name"], "staff-photo") if t.get("photo")
+                 else f'<div class="staff-photo staff-initials" aria-hidden="true">{esc(initials(t["name"]))}</div>')
+        cred = f'<p class="person-cred">{esc(t["credentials"])}</p>' if t.get("credentials") else ""
+        return f'<li class="staff-card">{photo}<div><h3>{esc(t["name"])}</h3><p class="person-role">{esc(t.get("role"))}</p>{cred}</div></li>'
+
+    leads = [t for t in TEAM if t.get("lead")]
+    groups = {}
     for t in TEAM:
-        initials = "".join(w[0] for w in re.sub(r"^(Mr|Mrs|Ms|Dr)\s+", "", t["name"]).split()[:3:2]).upper()
-        photo = (img_tag(t["photo"], t["name"], "person-photo") if t.get("photo")
-                 else f'<div class="person-photo person-initials" aria-hidden="true">{esc(initials)}</div>')
-        people.append(f"""<article class="person{' person-lead' if t.get('lead') else ''}">
-    {photo}
-    <div class="person-body">
-      <h2>{esc(t['name'])}</h2>
-      <p class="person-role">{esc(t.get('role'))}</p>
+        if not t.get("lead"):
+            groups.setdefault(t.get("group") or "Office", []).append(t)
+    order = GROUP_ORDER + [g for g in groups if g not in GROUP_ORDER]
+    lead_html = "".join(f"""<article class="person person-lead">
+    {img_tag(t["photo"], t["name"], "person-photo") if t.get("photo") else f'<div class="person-photo person-initials" aria-hidden="true">{esc(initials(t["name"]))}</div>'}
+    <div class="person-body"><h2>{esc(t['name'])}</h2><p class="person-role">{esc(t.get('role'))}</p>
       {f'<p class="person-cred">{esc(t["credentials"])}</p>' if t.get('credentials') else ''}
-      {f'<div class="prose">{md(t["bio"])}</div>' if t.get('bio') else ''}
-    </div>
-  </article>""")
+      {f'<div class="prose">{md(t["bio"])}</div>' if t.get('bio') else ''}</div>
+  </article>""" for t in leads)
+    group_html = "".join(
+        f'<section class="staff-group"><h2 class="staff-group-title">{esc(g)}</h2><ul class="staff-grid">{"".join(card(t) for t in groups[g])}</ul></section>'
+        for g in order if groups.get(g))
 
     def body():
-        return f"""{page_head('Key personnel', 'Leadership you can build on', 'We believe the success of any project depends on the quality of the people involved.')}
-<section class="section"><div class="wrap"><div class="team">{''.join(people)}</div></div></section>
+        return f"""{page_head('Our team', 'The people behind our projects', 'Engineers, draftspeople and operations staff delivering RNL projects across Papua New Guinea.')}
+<section class="section"><div class="wrap">{f'<div class="team">{lead_html}</div>' if lead_html else ''}{group_html}</div></section>
 {cta()}"""
-    write("/team/", "Our team", "Meet the engineers and leadership of R. Napitalai Limited.", body, active="/team/")
+    write("/team/", "Our team", "Meet the engineers, draftspeople and operations staff of R. Napitalai Limited.", body, active="/team/")
 
 
 def build_news():

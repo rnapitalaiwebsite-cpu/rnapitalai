@@ -91,12 +91,13 @@ collections:
     sortable_fields: [order, name]
     fields:
       - {label: Full name, name: name, widget: string}
-      - {label: Short id, name: slug, widget: string, pattern: ['^[a-z0-9-]+$', 'Lower-case letters, numbers and dashes only'], hint: "e.g. donald-lemeki"}
+      - {label: Short id, name: slug, widget: string, pattern: ['^[a-z0-9-]+$', 'Lower-case letters, numbers and dashes only'], hint: "e.g. sean-lemeki"}
       - {label: Display order, name: order, widget: number, value_type: int, default: 10}
       - {label: Job title, name: role, widget: string}
+      - {label: Team section, name: group, widget: select, options: [Project management, Operations, Engineering, Drafting, Office], default: Operations}
       - {label: Qualifications, name: credentials, widget: string, required: false}
       - {label: Photo, name: photo, widget: image, required: false, hint: "Square head-and-shoulders photo works best."}
-      - {label: Show as lead profile, name: lead, widget: boolean, default: false}
+      - {label: Show as lead profile (e.g. Project Manager), name: lead, widget: boolean, default: false}
       - {label: Biography, name: bio, widget: markdown, required: false, buttons: [bold, italic, link, bulleted-list]}
 
   # ---------------------------------------------------------------- Services
@@ -165,9 +166,6 @@ collections:
           - {label: Photo, name: image, widget: image}
           - {label: Photo description, name: image_alt, widget: string}
           - {label: Scope of work, name: scope, widget: list, field: {label: Item, name: item, widget: string}}
-          - {label: Director's statement, name: statement, widget: text}
-          - {label: Statement by, name: statement_name, widget: string}
-          - {label: Their title, name: statement_role, widget: string}
           - {label: Team photo, name: team_photo, widget: image, required: false}
           - {label: Team photo caption, name: team_photo_caption, widget: string, required: false}
       - label: Company details and offices
