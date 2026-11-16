@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Client portal preview | R. Napitalai Limited</title>
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../preview.css">
+</head>
+<body>
+<div class="pv-bar"><strong>Board preview · Phase 3</strong> · Sample client and sample project · <a href="../index.html">All previews</a> · <a href="../../index.html">Website</a></div>
+<div class="top"><img src="../../assets/img/mark-light.svg" alt=""><b>RNL Client Portal</b><span class="sp"></span><span class="badge">Sample project</span></div>
+
+<div class="wrap" id="login-view">
+  <form class="card login" id="signin">
+    <h2 style="font-size:24px">Client sign in</h2>
+    <p class="muted" style="margin-top:6px">Each client gets their own login and sees only their own projects.</p>
+    <label for="email" class="muted" style="display:block;text-align:left;margin-top:16px;font-size:13px">Email</label>
+    <input id="email" type="email" value="client@example.com" autocomplete="off">
+    <label for="pw" class="muted" style="display:block;text-align:left;margin-top:10px;font-size:13px">Password</label>
+    <input id="pw" type="password" value="demo-only" autocomplete="off">
+    <button class="btn" type="submit" style="width:100%;margin-top:16px">Sign in to the demo</button>
+    <p class="muted" style="font-size:12px;margin-top:10px">Demo only: any details work and nothing is sent.</p>
+  </form>
+</div>
+
+<div class="wrap" id="portal-view" hidden>
+  <div class="portal">
+    <div class="col">
+      <div class="card">
+        <div class="muted" style="font-size:13px;font-weight:600">YOUR PROJECT</div>
+        <h2 style="font-size:24px;margin-top:4px">Waterfront development · Structural works</h2>
+        <div class="bar"><i></i></div>
+        <div class="row" style="font-size:14px"><b>68% complete</b><span class="muted">Expected completion: March</span></div>
+        <ul class="ms">
+          <li><span class="tick t-ok">✓</span>Site investigation report<span class="d">Done</span></li>
+          <li><span class="tick t-ok">✓</span>Structural design approved<span class="d">Done</span></li>
+          <li><span class="tick t-ok">✓</span>Piling and pile caps<span class="d">Done</span></li>
+          <li><span class="tick t-now">•</span>Level 2 slab and columns<span class="d">In progress</span></li>
+          <li><span class="tick t-no"></span>Final inspection and certificate<span class="d">Upcoming</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="row"><b>Latest site photos</b><span class="muted" style="font-size:13px">Uploaded by RNL engineers</span></div>
+        <div class="gallery">
+          <img src="../../assets/img/site/waterfront-tower-crane-800.jpg" alt="Tower crane and reinforcement on site">
+          <img src="../../assets/img/site/waterfront-slab-works-800.jpg" alt="Slab and wall works">
+          <img src="../../assets/img/site/piling-site-excavator-800.jpg" alt="Piling and pile caps">
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card"><b>Documents</b>
+        <div style="margin-top:8px">
+          <div class="doc"><span>Structural drawings, Rev C.pdf</span><span class="muted">Download</span></div>
+          <div class="doc"><span>Geotechnical report.pdf</span><span class="muted">Download</span></div>
+          <div class="doc"><span>Inspection record, pile caps.pdf</span><span class="muted">Download</span></div>
+          <div class="doc"><span>Monthly progress report.pdf</span><span class="muted">Download</span></div>
+        </div>
+      </div>
+      <div class="card"><b>Messages with your project engineer</b>
+        <div id="messages">
+          <div class="msg"><b>RNL Engineer · 10:42 am</b><br>Level 2 slab poured this morning. Photos are in the gallery. Next inspection booked for Friday.</div>
+        </div>
+        <form class="send" id="send-form">
+          <label for="msg-input" class="sr" style="position:absolute;left:-9999px">Message</label>
+          <input id="msg-input" placeholder="Write a message (demo)" autocomplete="off">
+          <button class="btn" type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../preview.js"></script>
+</body>
+</html>

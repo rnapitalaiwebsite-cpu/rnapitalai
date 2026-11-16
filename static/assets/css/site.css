@@ -325,3 +325,4 @@ address { font-style: normal; margin-bottom: 1em; }
 .staff-card .person-role { margin: 0; font-size: .92rem; }
 .staff-photo { width: 64px; height: 64px; flex: none; border-radius: 50%; object-fit: cover; }
 .staff-initials { display: flex; align-items: center; justify-content: center; background: var(--navy); color: var(--yellow); font: 800 1.15rem var(--head); }
+.preview-bar a { color: inherit; margin-left: 6px; white-space: nowrap; }

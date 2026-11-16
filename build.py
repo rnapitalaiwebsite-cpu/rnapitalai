@@ -254,7 +254,7 @@ def header(active):
         f'<li><a href="{link(u)}"{" aria-current=" + chr(34) + "page" + chr(34) if active == u else ""}>{t}</a></li>'
         for t, u in NAV)
     bar = ('<div class="preview-bar" role="note"><strong>Staging site</strong> for review by R. Napitalai Limited. '
-           'Not yet live; enquiries are not sent.</div>') if ARGS.staging else ""
+           f'Not yet live; enquiries are not sent. <a href="{asset("/preview/index.html")}"><strong>Board preview: phases 2 and 3 →</strong></a></div>') if ARGS.staging else ""
     return f"""<a class="skip" href="#main">Skip to content</a>
   {bar}
   <header class="site-header">
@@ -658,6 +658,9 @@ def main():
     shutil.copytree(STATIC, OUT)
     build_home(); build_about(); build_services(); build_projects()
     build_team(); build_news(); build_contact(); build_404(); build_seo_files()
+    if ARGS.staging:
+        # Board preview of phases 2 and 3 (sample screens): staging builds only, never the live site.
+        shutil.copytree(ROOT / "preview", OUT / "preview")
     (OUT / ".nojekyll").write_text("")
     print(f"Built {len(PAGES) + 1} pages into {OUT.relative_to(ROOT)}"
           f"{' (staging)' if ARGS.staging else ''}{' (relative links)' if ARGS.relative else ''}")

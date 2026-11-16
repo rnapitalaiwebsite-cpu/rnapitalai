@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Staff system preview | R. Napitalai Limited</title>
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../preview.css">
+</head>
+<body>
+<div class="pv-bar"><strong>Board preview · Phase 2</strong> · Sample screens with sample data · <a href="../index.html">All previews</a> · <a href="../../index.html">Website</a></div>
+<div class="top"><img src="../../assets/img/mark-light.svg" alt=""><b>RNL Staff</b><span class="sp"></span><span class="badge">Sample data</span><span class="who">Signed in as Operations Manager</span></div>
+<div class="wrap">
+  <div class="tabs" role="tablist" aria-label="Staff system screens">
+    <button role="tab" id="t-ops" aria-controls="p-ops" data-hash="operations">Operations view</button>
+    <button role="tab" id="t-app" aria-controls="p-app" data-hash="engineer-app">Engineer’s phone app</button>
+    <button role="tab" id="t-pay" aria-controls="p-pay" data-hash="payroll">Payroll</button>
+  </div>
+
+  <section class="panel" id="p-ops" role="tabpanel" aria-labelledby="t-ops">
+    <h2 style="font-size:24px">Today · Tuesday 24 November</h2>
+    <div class="kpis">
+      <div class="card kpi"><div class="v">11</div><div class="l">Clocked in</div></div>
+      <div class="card kpi"><div class="v">7</div><div class="l">On project sites (GPS)</div></div>
+      <div class="card kpi"><div class="v">1</div><div class="l">On leave</div></div>
+      <div class="card kpi"><div class="v">3</div><div class="l">Site issues flagged</div></div>
+    </div>
+    <div class="card" style="padding:6px">
+      <div class="table-scroll"><table>
+        <tr><th>Staff</th><th>Location</th><th>Clock in</th><th class="n">Site updates</th><th>Status</th></tr>
+        <tr><td><span class="dot">SL</span>Sean Lemeki · Engineer</td><td>Waterfront development, Lot 4</td><td>7:42 am</td><td class="n">3 · 3 photos</td><td><span class="pill ok">On site</span></td></tr>
+        <tr><td><span class="dot">BJ</span>Brendan James · Engineer</td><td>Highlands facility, Goroka</td><td>7:15 am</td><td class="n">2 · 4 photos</td><td><span class="pill ok">On site</span></td></tr>
+        <tr><td><span class="dot">EM</span>Eremas Mainot · Operations Manager</td><td>Head office, Gabutu Hill</td><td>7:58 am</td><td class="n">–</td><td><span class="pill ok">In office</span></td></tr>
+        <tr><td><span class="dot">JG</span>James Gizopave · Senior Draftsman</td><td>Head office, Gabutu Hill</td><td>8:05 am</td><td class="n">–</td><td><span class="pill ok">In office</span></td></tr>
+        <tr><td><span class="dot">JJ</span>Johnson Johipa · Fleet Manager</td><td>Travelling to Lae branch</td><td>6:50 am</td><td class="n">1</td><td><span class="pill warn">Travelling</span></td></tr>
+        <tr><td><span class="dot">LM</span>Lionel Mesake · Draftsman</td><td>–</td><td>–</td><td class="n">–</td><td><span class="pill off">On leave</span></td></tr>
+      </table></div>
+    </div>
+    <p class="muted" style="margin-top:14px">Each engineer’s clock-in is checked against the project site by GPS. Site updates and photos feed the client portal in phase 3.</p>
+  </section>
+
+  <section class="panel" id="p-app" role="tabpanel" aria-labelledby="t-app" hidden>
+    <div class="split">
+      <div class="phone">
+        <div class="top"><img src="../../assets/img/mark-light.svg" alt=""><b>RNL Field</b><span class="sp"></span><span class="badge">Sample</span></div>
+        <div class="phone-body">
+          <div class="card clock">
+            <div class="muted" style="font-size:13px;font-weight:600">Tuesday 24 November</div>
+            <div class="time">7:42 am</div>
+            <div class="muted" id="clock-state">Clocked in · Sean Lemeki, Engineer</div>
+            <div class="gps">● GPS confirmed at site: Waterfront development, Lot 4</div>
+            <button class="bigbtn" id="clock-btn" type="button">Clock out</button>
+          </div>
+          <div class="card">
+            <div class="row"><b>Today’s log</b><span class="pill ok">Synced</span></div>
+            <ul class="log">
+              <li>Pile cap PC-3 reinforcement inspected<span>8:15 am · 2 photos</span></li>
+              <li>Concrete pour approved, slab section B<span>10:40 am · 1 photo</span></li>
+              <li>Issue: scaffold access at grid C4<span>11:05 am · flagged to operations</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="row"><b>Site photos</b><span class="btn" style="padding:6px 12px;font-size:13px">+ Add</span></div>
+            <div class="photos">
+              <img src="../../assets/img/site/baseplate-rebar-cage-800.jpg" alt="Pile cap reinforcement">
+              <img src="../../assets/img/site/waterfront-slab-works-800.jpg" alt="Slab works">
+              <img src="../../assets/img/site/waterfront-tower-crane-800.jpg" alt="Tower crane on site">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="explain">
+        <h2>What an engineer does each day</h2>
+        <p>The app runs on the engineer’s own phone. Try the Clock out button.</p>
+        <ul>
+          <li><b>Clock in on arrival.</b> GPS confirms they are at the project site.</li>
+          <li><b>Log the day’s work</b> in a line or two, with photos from the phone camera.</li>
+          <li><b>Flag an issue</b> straight to operations, with a photo.</li>
+          <li><b>Request leave</b> and submit the weekly timesheet, which feeds payroll.</li>
+          <li><b>Works with weak signal.</b> Entries wait on the phone and send when signal returns.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-pay" role="tabpanel" aria-labelledby="t-pay" hidden>
+    <h2 style="font-size:24px">Pay run · Fortnight ending 27 November</h2>
+    <div class="steps">
+      <div class="step done"><b>Timesheets</b>13 of 13 received</div>
+      <div class="step done"><b>Leave</b>2 requests applied</div>
+      <div class="step done"><b>Calculate</b>Tax and super worked out</div>
+      <div class="step now" id="step-approve"><b>Approve</b>Waiting for sign-off</div>
+      <div class="step" id="step-pay"><b>Pay</b>Bank file and payslips</div>
+    </div>
+    <div class="card" style="padding:6px">
+      <div class="table-scroll"><table>
+        <tr><th>Employee</th><th class="n">Ordinary hrs</th><th class="n">Overtime hrs</th><th class="n">Gross</th><th class="n">Deductions</th><th class="n">Net pay</th></tr>
+        <tr><td>RNL 09 · Draftsman</td><td class="n">80.0</td><td class="n">4.0</td><td class="n">K 0,000.00</td><td class="n">K 000.00</td><td class="n">K 0,000.00</td></tr>
+        <tr><td>RNL 13 · Engineer</td><td class="n">80.0</td><td class="n">6.5</td><td class="n">K 0,000.00</td><td class="n">K 000.00</td><td class="n">K 0,000.00</td></tr>
+        <tr><td>RNL 21 · Engineer</td><td class="n">72.0</td><td class="n">0.0</td><td class="n">K 0,000.00</td><td class="n">K 000.00</td><td class="n">K 0,000.00</td></tr>
+        <tr><td>RNL 28 · Construction (casual)</td><td class="n">64.0</td><td class="n">2.0</td><td class="n">K 0,000.00</td><td class="n">K 000.00</td><td class="n">K 0,000.00</td></tr>
+        <tr><td>RNL 31 · Office support</td><td class="n">80.0</td><td class="n">0.0</td><td class="n">K 0,000.00</td><td class="n">K 000.00</td><td class="n">K 0,000.00</td></tr>
+      </table></div>
+    </div>
+    <div class="row" style="margin-top:16px; flex-wrap:wrap">
+      <p class="muted" style="font-size:13px">Amounts are placeholders. Tax and super rules will be set and signed off by RNL’s accountant.</p>
+      <span><button class="btn o" type="button">Export bank file</button> <button class="btn" id="approve-btn" type="button">Approve pay run</button></span>
+    </div>
+    <p class="status" id="pay-status" role="status"></p>
+  </section>
+</div>
+<script src="../preview.js"></script>
+</body>
+</html>
