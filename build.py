@@ -661,6 +661,57 @@ def build_contact():
     write("/contact/", "Contact", "Contact R. Napitalai Limited in Port Moresby, Lae, Kokopo or Goroka.", body, active="/contact/")
 
 
+def build_verify():
+    """Employment verification pages for the personal QR code on RNL ID cards.
+
+    One record per card in content/verify/*.json (token, code, name, position, photo,
+    status, issued, expires). The page lives at /verify/<token>/ and shows whether the card
+    is current. Set status to anything other than "current" to switch a card off.
+    """
+    folder = CONTENT / "verify"
+    records = [load(p) for p in sorted(folder.glob("*.json"))] if folder.exists() else []
+
+    def index_body():
+        return (page_head("Employment verification", "Verify an RNL ID card",
+                          "Scan the personal QR code on the front of an R. Napitalai Limited ID card to check that it is current.")
+                + f'<section class="section"><div class="wrap narrow"><p>If you cannot scan the code, call RNL on '
+                  f'<a href="{tel(SET["phone"])}">{esc(SET["phone"])}</a> with the ID number on the card.</p></div></section>')
+    write("/verify/", "Verify an ID card", "Check that an R. Napitalai Limited ID card is current.", index_body, noindex=True)
+
+    for r in records:
+        if not re.fullmatch(r"[a-z0-9]{8,32}", str(r.get("token", ""))):
+            continue
+        Page.path = f"/verify/{r['token']}/"
+        ok = str(r.get("status", "")).lower() == "current"
+        words = re.sub(r"^(Mr|Mrs|Ms|Dr)\s+", "", r.get("name", "")).split()
+        initials = (words[0][0] + (words[-1][0] if len(words) > 1 else "")).upper() if words else "?"
+        photo = (img_tag(r["photo"], r.get("name", ""), "verify-photo", lazy=False) if r.get("photo")
+                 else f'<div class="verify-photo verify-initials" aria-hidden="true">{esc(initials)}</div>')
+        status = ('<p class="verify-status is-ok"><span aria-hidden="true">✓</span> Current employee</p>' if ok else
+                  '<p class="verify-status is-bad"><span aria-hidden="true">✕</span> Not valid. This card is no longer in use.</p>')
+        rows = "".join(f"<dt>{k}</dt><dd>{esc(v)}</dd>" for k, v in
+                       [("ID number", r.get("code")), ("Position", r.get("position")),
+                        ("Issued", r.get("issued")), ("Valid to", r.get("expires"))] if v)
+
+        def body(photo=photo, status=status, rows=rows, r=r, ok=ok):
+            check = ("Check that the photo and name match the person and the card." if ok else
+                     "Do not accept this card. Please call RNL to report it.")
+            return f"""<section class="section"><div class="wrap narrow">
+  <p class="eyebrow">Employment verification · R. Napitalai Limited</p>
+  <div class="verify-card">
+    {photo}
+    <div class="verify-body">
+      {status}
+      <h1 class="verify-name">{esc(r.get('name'))}</h1>
+      <dl class="verify-facts">{rows}</dl>
+    </div>
+  </div>
+  <p class="verify-note">{check} Questions: call <a href="{tel(SET['phone'])}">{esc(SET['phone'])}</a> or email <a href="mailto:{esc(SET['email'])}">{esc(SET['email'])}</a>.</p>
+</div></section>"""
+        write(f"/verify/{r['token']}/", "ID card check", "Employment verification for an R. Napitalai Limited ID card.",
+              body, noindex=True)
+
+
 def build_404():
     def body():
         return (page_head("", "Page not found", "The page you were looking for has moved or no longer exists.")
@@ -683,7 +734,7 @@ def main():
         shutil.rmtree(OUT)
     shutil.copytree(STATIC, OUT)
     build_home(); build_about(); build_services(); build_projects()
-    build_team(); build_news(); build_contact(); build_404(); build_seo_files()
+    build_team(); build_news(); build_contact(); build_verify(); build_404(); build_seo_files()
     if ARGS.staging:
         # Board preview of phases 2 and 3 (sample screens): staging builds only, never the live site.
         shutil.copytree(ROOT / "preview", OUT / "preview")

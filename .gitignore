@@ -2,3 +2,7 @@ _site/
 _staging/
 __pycache__/
 .DS_Store
+
+# Staff ID verification records hold staff names: keep them out of the repository
+# until it is private. Remove this line once it is.
+content/verify/

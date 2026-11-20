@@ -340,3 +340,17 @@ address { font-style: normal; margin-bottom: 1em; }
 .fb-feed iframe { width: 100%; max-width: 500px; background: var(--tint); border-radius: var(--radius); }
 .fb-feed p { margin-top: 10px; }
 @media (max-width: 960px) { .news-layout { grid-template-columns: 1fr; } .fb-feed { position: static; } }
+
+/* Employment verification (personal QR on RNL ID cards) */
+.verify-card { display: flex; gap: 28px; align-items: center; margin-top: 18px; padding: 28px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); flex-wrap: wrap; }
+.verify-photo { width: 140px; height: 172px; flex: none; object-fit: cover; border-radius: 10px; border: 2px solid var(--navy); }
+.verify-initials { display: flex; align-items: center; justify-content: center; background: var(--navy); color: var(--yellow); font: 800 2.6rem var(--head); }
+.verify-body { flex: 1; min-width: 220px; }
+.verify-status { display: inline-block; font-weight: 700; padding: 6px 14px; border-radius: 12px; margin: 0 0 10px; }
+.verify-status.is-ok { background: #E3F4EA; color: #1E7A45; }
+.verify-status.is-bad { background: #FBE4E1; color: #A3271B; }
+.verify-name { font-size: clamp(1.6rem, 4vw, 2.2rem); margin: 0 0 12px; color: var(--ink); }
+.verify-facts { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin: 0; }
+.verify-facts dt { color: var(--muted); font-size: .9rem; }
+.verify-facts dd { margin: 0; font-weight: 600; }
+.verify-note { margin-top: 18px; color: var(--muted); }
