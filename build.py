@@ -254,8 +254,7 @@ def header(active):
     items = "".join(
         f'<li><a href="{link(u)}"{" aria-current=" + chr(34) + "page" + chr(34) if active == u else ""}>{t}</a></li>'
         for t, u in NAV)
-    bar = ('<div class="preview-bar" role="note"><strong>Staging site</strong> for review by R. Napitalai Limited. '
-           f'Not yet live; enquiries are not sent. <a href="{asset("/preview/index.html")}"><strong>Board preview: media, staff and client systems →</strong></a></div>') if ARGS.staging else ""
+    bar = ""  # no banner: the demo looks exactly like the live site (it is still hidden from Google)
     return f"""<a class="skip" href="#main">Skip to content</a>
   {bar}
   <header class="site-header">
@@ -637,7 +636,7 @@ def build_contact():
     def body():
         return f"""{page_head('Get in touch', "Let's talk about your project", 'Whether you are planning a new facility, need structural certification or want to discuss a project, we will reply within two working days.')}
 <section class="section"><div class="wrap contact-grid">
-  <form class="form" id="enquiry-form" method="post"{attrs} data-endpoint="{esc(endpoint)}" data-mailto="{esc(f.get('notify_email') or SET['email'])}"{' data-preview="1"' if ARGS.staging else ''} novalidate>
+  <form class="form" id="enquiry-form" method="post"{attrs} data-endpoint="{esc(endpoint)}" data-mailto="{esc(f.get('notify_email') or SET['email'])}" novalidate>
     {hidden}
     <input type="hidden" name="subject" value="New website enquiry — {esc(SET['brand_name'])}">
     <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="botcheck" tabindex="-1" autocomplete="off"></label></div>

@@ -1,11 +1,13 @@
-# Editing screen settings (Decap CMS).
-# Before launch, replace the two values marked SET-ME (see HANDOVER.md, step 3).
+# Editing screen settings (Sveltia CMS, compatible with Decap CMS).
+# Sign-in: on the editor's sign-in screen, click the arrow next to "Sign In" and choose
+# "Use Personal Access Token" (see HANDOVER.md). A "Sign in with GitHub" button can be
+# added later by deploying oauth-worker/ and setting base_url below.
 backend:
   name: github
   repo: rnapitalaiwebsite-cpu/rnapitalai   # RNL's GitHub repository
   branch: main
-  base_url: https://SET-ME.workers.dev  # RNL's sign-in helper (oauth-worker/)
-  auth_endpoint: auth
+  # base_url: https://rnl-cms-auth.<subdomain>.workers.dev   # optional sign-in helper
+  # auth_endpoint: auth
   commit_messages:
     create: "Add {{collection}} “{{slug}}”"
     update: "Update {{collection}} “{{slug}}”"
@@ -13,12 +15,9 @@ backend:
     uploadMedia: "Upload “{{path}}”"
     deleteMedia: "Delete “{{path}}”"
 
-# Lets Eyemagine test the editor on a laptop with `npx decap-server`.
-local_backend: true
-
 site_url: https://napitalaiengineers.com
 display_url: https://napitalaiengineers.com
-logo_url: /assets/img/apple-touch-icon.png
+logo_url: ../assets/img/apple-touch-icon.png
 
 media_folder: static/assets/img/uploads
 public_folder: /assets/img/uploads

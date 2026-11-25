@@ -13,11 +13,27 @@ This repository holds everything: the content, the site builder, the editing scr
 |---|---|
 | `content/` | All editable text and photo choices (JSON). Changed by the editing screen. |
 | `static/` | Design, scripts, logos and photos. New uploads land in `static/assets/img/uploads/`. |
-| `static/admin/` | The editing screen (Decap CMS, free and open source). |
+| `static/admin/` | The editing screen (Sveltia CMS, free and open source; Decap CMS compatible). |
 | `build.py` | Turns `content/` into the website in `_site/`. Python 3 only, no packages. |
 | `.github/workflows/deploy.yml` | Rebuilds and publishes on every change. |
 | `oauth-worker/` | Small free sign-in helper so staff can log in to `/admin` with GitHub. |
 | `netlify.toml` | Only if RNL ever moves to Netlify (see costs below). |
+
+## Editing the website (RNL staff)
+
+1. Go to **napitalaiengineers.com/admin/** (before launch: rnapitalaiwebsite-cpu.github.io/rnapitalai/admin/).
+2. Sign in. Each editor needs a free GitHub account added under the repository's Settings > Collaborators,
+   and a personal access token:
+   - GitHub > Settings > Developer settings > Personal access tokens > **Fine-grained tokens** > Generate new token.
+   - Repository access: **Only select repositories** > `rnapitalaiwebsite-cpu/rnapitalai`.
+   - Permissions: **Contents: Read and write** (Metadata: Read-only is added automatically). Expiry: 1 year.
+   - On the editor's sign-in screen, click the arrow next to **Sign In**, choose **Use Personal Access Token**, paste the token.
+     The browser remembers it, so this is done once per computer or phone.
+3. Pick a section (Projects, News, Team, Services, Careers, pages, company details), edit, upload photos, and click **Publish**.
+   The site updates in 2–3 minutes. Every change is kept in the repository history and can be undone.
+
+Optional: a "Sign in with GitHub" button instead of tokens. Deploy `oauth-worker/` to Cloudflare Workers (free),
+then set `base_url` in `static/admin/config.yml`.
 
 ## Go-live steps
 
