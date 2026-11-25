@@ -16,10 +16,34 @@
   "linkedin": "",
   "social_image": "/assets/img/og-image.jpg",
   "branches": [
-    {"name": "Port Moresby", "label": "Head office", "address": "Section 11, Lot 16, Purari Avenue, Gabutu Hill, Port Moresby", "phone": "+675 340 4932", "email": "info@napitalai.com.pg"},
-    {"name": "Lae", "label": "Morobe Province", "address": "", "phone": "", "email": ""},
-    {"name": "Kokopo", "label": "East New Britain Province", "address": "", "phone": "", "email": ""},
-    {"name": "Goroka", "label": "Eastern Highlands Province", "address": "", "phone": "", "email": ""}
+    {
+      "name": "Port Moresby",
+      "label": "Head office",
+      "address": "Section 11, Lot 16, Purari Avenue, Gabutu Hill, Port Moresby",
+      "phone": "+675 340 4932",
+      "email": "info@napitalai.com.pg"
+    },
+    {
+      "name": "Lae",
+      "label": "Morobe Province",
+      "address": "",
+      "phone": "",
+      "email": ""
+    },
+    {
+      "name": "Kokopo",
+      "label": "East New Britain Province",
+      "address": "",
+      "phone": "",
+      "email": ""
+    },
+    {
+      "name": "Goroka",
+      "label": "Eastern Highlands Province",
+      "address": "",
+      "phone": "",
+      "email": ""
+    }
   ],
   "cta_title": "Planning a project?",
   "cta_text": "Tell us what you are building. We will come back to you within two working days.",
@@ -28,10 +52,25 @@
     "web3forms_access_key": "",
     "endpoint": "",
     "notify_email": "info@napitalai.com.pg",
-    "enquiry_types": ["Civil Engineering", "Structural Engineering", "Drafting", "Investigation & Reporting", "Construction Supervision", "Project Management", "Careers / graduate roles", "Other"]
+    "enquiry_types": [
+      "Civil Engineering",
+      "Structural Engineering",
+      "Drafting",
+      "Investigation & Reporting",
+      "Construction Supervision",
+      "Project Management",
+      "Careers / graduate roles",
+      "Other"
+    ]
   },
   "analytics": {
     "ga4_measurement_id": "",
     "search_console_verification": ""
-  }
+  },
+  "whatsapp": "",
+  "instagram": "",
+  "youtube": "",
+  "tiktok": "",
+  "company_profile": "",
+  "map_embed_query": "Purari Avenue, Gabutu, Port Moresby, Papua New Guinea"
 }

@@ -168,6 +168,26 @@ collections:
           - {label: Scope of work, name: scope, widget: list, field: {label: Item, name: item, widget: string}}
           - {label: Team photo, name: team_photo, widget: image, required: false}
           - {label: Team photo caption, name: team_photo_caption, widget: string, required: false}
+      - label: Careers page
+        name: careers
+        file: content/careers.json
+        fields:
+          - {label: Heading, name: title, widget: string}
+          - {label: Intro line, name: lead, widget: text}
+          - {label: About working at RNL, name: body, widget: markdown, buttons: [bold, italic, link, heading-two, bulleted-list]}
+          - {label: How to apply, name: how_to_apply, widget: text, hint: "The main company email is shown under this text automatically."}
+          - label: Vacancies
+            name: vacancies
+            widget: list
+            required: false
+            hint: "Add a vacancy when a role opens, delete it when it closes. With none listed, the page says there are no open vacancies."
+            fields:
+              - {label: Job title, name: title, widget: string}
+              - {label: Location, name: location, widget: string, required: false}
+              - {label: Type, name: type, widget: select, options: [Full time, Part time, Contract, Graduate, Casual], required: false}
+              - {label: Closing date, name: closing_date, widget: datetime, format: "YYYY-MM-DD", date_format: "D MMMM YYYY", time_format: false, required: false}
+              - {label: Short summary, name: summary, widget: text, required: false}
+              - {label: Full details, name: details, widget: markdown, required: false, buttons: [bold, italic, link, bulleted-list]}
       - label: Company details and offices
         name: settings
         file: content/settings.json
@@ -187,6 +207,12 @@ collections:
           - {label: Google Maps link, name: map_link, widget: string}
           - {label: Facebook page, name: facebook, widget: string, required: false}
           - {label: LinkedIn page, name: linkedin, widget: string, required: false}
+          - {label: Instagram page, name: instagram, widget: string, required: false}
+          - {label: TikTok page, name: tiktok, widget: string, required: false}
+          - {label: YouTube channel, name: youtube, widget: string, required: false}
+          - {label: WhatsApp number, name: whatsapp, widget: string, required: false, hint: "Mobile number with country code, e.g. +675 7xxx xxxx. Shows a 'Chat on WhatsApp' button on every page. Leave empty to hide it."}
+          - {label: Company profile (PDF), name: company_profile, widget: file, required: false, hint: "Shows a download link in the footer and on the About page."}
+          - {label: Map location, name: map_embed_query, widget: string, required: false, hint: "What the map on the Contact page searches for."}
           - {label: Sharing image, name: social_image, widget: image, hint: "Shown when the site is shared on WhatsApp, Facebook or LinkedIn. 1200 x 630 px."}
           - label: Offices
             name: branches

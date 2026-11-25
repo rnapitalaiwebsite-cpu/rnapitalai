@@ -47,6 +47,7 @@ def load_folder(name, key="order"):
 SET = load(CONTENT / "settings.json")
 HOME = load(CONTENT / "home.json")
 ABOUT = load(CONTENT / "about.json")
+CAREERS = load(CONTENT / "careers.json") if (CONTENT / "careers.json").exists() else None
 SERVICES = load_folder("services")
 PROJECTS = load_folder("projects")
 TEAM = load_folder("team")
@@ -271,10 +272,14 @@ def header(active):
 
 def footer():
     company = "".join(f'<li><a href="{link(u)}">{t}</a></li>' for t, u in
-                      [("About", "/about/"), ("Our team", "/team/"), ("Projects", "/projects/"), ("News", "/news/")])
+                      [("About", "/about/"), ("Our team", "/team/"), ("Projects", "/projects/"), ("News", "/news/")]
+                      + ([("Careers", "/careers/")] if CAREERS else []))
+    if SET.get("company_profile"):
+        company += f'<li><a href="{asset(SET["company_profile"])}" download>Company profile (PDF)</a></li>'
     services = "".join(f'<li><a href="{link("/services/#" + s["slug"])}">{esc(s["title"])}</a></li>' for s in SERVICES)
     social = " · ".join(f'<a href="{esc(u)}" rel="noopener">{n}</a>' for n, u in
-                        [("Facebook", SET.get("facebook")), ("LinkedIn", SET.get("linkedin"))] if u)
+                        [("Facebook", SET.get("facebook")), ("LinkedIn", SET.get("linkedin")), ("Instagram", SET.get("instagram")),
+                         ("TikTok", SET.get("tiktok")), ("YouTube", SET.get("youtube"))] if u)
     offices = ", ".join(b["name"] for b in SET["branches"])
     offices = re.sub(r", ([^,]+)$", r" and \1", offices)
     return f"""<footer class="site-footer">
@@ -294,7 +299,20 @@ def footer():
   </div>
   <div class="wrap footer-base"><span>© {dt.date.today().year} {esc(SET['site_name'])}. All rights reserved.</span><span>Offices in {esc(offices)}</span></div>
 </footer>
+{whatsapp_button()}
   <script src="{asset('/assets/js/site.js')}" defer></script>"""
+
+
+def whatsapp_button():
+    """Floating WhatsApp chat button, shown only when a WhatsApp number is set in /admin."""
+    digits = re.sub(r"\D", "", SET.get("whatsapp") or "")
+    if not digits:
+        return ""
+    from urllib.parse import quote
+    msg = quote(f"Hello {SET['brand_name']}, I have an enquiry from your website.")
+    return (f'<a class="wa-float" href="https://wa.me/{digits}?text={msg}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">'
+            '<svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.8 2 6.8L3 29l6.6-2c1.9 1 4.1 1.6 6.4 1.6 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.3c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1.2 1.2-3.8-.3-.4c-1.1-1.7-1.7-3.6-1.7-5.7C5.2 10 10 5.3 16 5.3S26.8 10 26.8 15.8 22 26.3 16 26.3zm5.9-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>'
+            '<span>Chat on WhatsApp</span></a>')
 
 
 def cta():
@@ -447,7 +465,7 @@ def build_about():
     def body():
         return f"""{page_head('About RNL', a['title'], a['lead'])}
 <section class="section"><div class="wrap split">
-  <div class="prose">{md(a['body'])}</div>
+  <div class="prose">{md(a['body'])}{f'<p><a class="btn btn-primary" href="{asset(SET["company_profile"])}" download>Download our company profile (PDF)</a></p>' if SET.get("company_profile") else ""}</div>
   {img_tag(a['image'], a.get('image_alt'), 'split-img', '(max-width: 760px) 100vw, 50vw')}
 </div></section>
 <section class="section section-alt"><div class="wrap">
@@ -655,10 +673,56 @@ def build_contact():
     <div class="contact-block"><h2>Head office</h2><p>{esc(SET['street_address'])}<br>{esc(SET['city'])}<br>{esc(SET['postal_address'])}</p><p><a class="text-link" href="{esc(SET['map_link'])}" rel="noopener">Open in Google Maps →</a></p></div>
     <div class="contact-block"><h2>Phone and email</h2><p><a href="{tel(SET['phone'])}">{esc(SET['phone'])}</a><br><a href="mailto:{esc(SET['email'])}">{esc(SET['email'])}</a></p></div>
     <div class="contact-block"><h2>Other offices</h2><ul class="plain">{others}</ul></div>
-    <div class="contact-block"><h2>Careers</h2><p>We hire graduate civil and structural engineers. Vacancies are posted on our <a href="{esc(SET.get('facebook'))}" rel="noopener">Facebook page</a>.</p></div>
+    <div class="contact-block"><h2>Careers</h2><p>We hire graduate civil and structural engineers. <a class="text-link" href="{link('/careers/')}">See careers at RNL →</a></p></div>
   </aside>
-</div></section>"""
+</div></section>
+{map_block()}"""
     write("/contact/", "Contact", "Contact R. Napitalai Limited in Port Moresby, Lae, Kokopo or Goroka.", body, active="/contact/")
+
+
+def map_block():
+    q = SET.get("map_embed_query") or f"{SET['street_address']}, {SET['city']}"
+    from urllib.parse import quote
+    src = f"https://maps.google.com/maps?q={quote(q)}&z=15&output=embed"
+    return (f'<section class="section section-alt"><div class="wrap"><h2 class="section-title">Find our head office</h2>'
+            f'<div class="map-frame"><iframe title="Map showing RNL head office at Gabutu Hill, Port Moresby" src="{esc(src)}" loading="lazy" '
+            f'referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>'
+            f'<p class="map-note">{esc(SET["street_address"])}, {esc(SET["city"])} · <a class="text-link" href="{esc(SET["map_link"])}" rel="noopener">Get directions →</a></p></div></section>')
+
+
+def build_careers():
+    if not CAREERS:
+        return
+    c = CAREERS
+    jobs = [v for v in c.get("vacancies", []) if v.get("title")]
+    if jobs:
+        cards = []
+        for v in jobs:
+            meta = [v.get("location"), v.get("type")]
+            if v.get("closing_date"):
+                meta.append("Closes " + fmt_date(v["closing_date"]))
+            meta_html = " · ".join(esc(x) for x in meta if x)
+            summary = f"<p>{esc(v['summary'])}</p>" if v.get("summary") else ""
+            details = f'<div class="prose">{md(v["details"])}</div>' if v.get("details") else ""
+            cards.append(f'<article class="job"><h3>{esc(v["title"])}</h3><p class="job-meta">{meta_html}</p>{summary}{details}</article>')
+        cards = "".join(cards)
+        openings = f'<h2 class="section-title">Current vacancies</h2><div class="jobs">{cards}</div>'
+    else:
+        fb = SET.get("facebook")
+        openings = ('<h2 class="section-title">Current vacancies</h2><div class="job job-empty"><p>There are no open vacancies listed right now.'
+                    + (f' New roles are also announced on our <a href="{esc(fb)}" rel="noopener">Facebook page</a>.' if fb else "") + '</p></div>')
+    apply_text = inline(c.get("how_to_apply", ""))
+    apply_text = re.sub(r"([\w.+-]+@[\w-]+\.[\w.]+)", r'<a href="mailto:\1">\1</a>', apply_text)
+
+    def body():
+        return f"""{page_head('Careers', c['title'], c.get('lead', ''))}
+<section class="section"><div class="wrap careers-layout">
+  <div class="prose">{md(c.get('body'))}</div>
+  <aside class="apply-box"><h2>How to apply</h2><p>{apply_text}</p><p><a href="mailto:{esc(SET['email'])}">{esc(SET['email'])}</a></p>
+    <a class="btn btn-primary" href="mailto:{esc(SET['email'])}?subject={esc('Job application')}">Email your application</a></aside>
+</div></section>
+<section class="section section-alt"><div class="wrap">{openings}</div></section>"""
+    write("/careers/", "Careers", c.get("lead", "Careers at R. Napitalai Limited."), body, active="/careers/")
 
 
 def build_verify():
@@ -734,7 +798,7 @@ def main():
         shutil.rmtree(OUT)
     shutil.copytree(STATIC, OUT)
     build_home(); build_about(); build_services(); build_projects()
-    build_team(); build_news(); build_contact(); build_verify(); build_404(); build_seo_files()
+    build_team(); build_news(); build_contact(); build_careers(); build_verify(); build_404(); build_seo_files()
     if ARGS.staging:
         # Board preview of phases 2 and 3 (sample screens): staging builds only, never the live site.
         shutil.copytree(ROOT / "preview", OUT / "preview")
