@@ -35,7 +35,6 @@
       var kind = el.getAttribute("data-share");
       if (kind === "facebook") el.href = "https://www.facebook.com/sharer/sharer.php?u=" + u;
       if (kind === "linkedin") el.href = "https://www.linkedin.com/sharing/share-offsite/?url=" + u;
-      if (kind === "whatsapp") el.href = "https://wa.me/?text=" + t + "%20" + u;
       if (kind === "copy") el.addEventListener("click", function () {
         var done = function () { el.textContent = "Link copied"; setTimeout(function () { el.textContent = "Copy link"; }, 2000); };
         if (navigator.clipboard) navigator.clipboard.writeText(here).then(done, function () { prompt("Copy this link:", here); });

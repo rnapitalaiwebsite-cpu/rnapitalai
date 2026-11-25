@@ -278,8 +278,7 @@ def footer():
         company += f'<li><a href="{asset(SET["company_profile"])}" download>Company profile (PDF)</a></li>'
     services = "".join(f'<li><a href="{link("/services/#" + s["slug"])}">{esc(s["title"])}</a></li>' for s in SERVICES)
     social = " · ".join(f'<a href="{esc(u)}" rel="noopener">{n}</a>' for n, u in
-                        [("Facebook", SET.get("facebook")), ("LinkedIn", SET.get("linkedin")), ("Instagram", SET.get("instagram")),
-                         ("TikTok", SET.get("tiktok")), ("YouTube", SET.get("youtube"))] if u)
+                        [("Facebook", SET.get("facebook")), ("LinkedIn", SET.get("linkedin"))] if u)
     offices = ", ".join(b["name"] for b in SET["branches"])
     offices = re.sub(r", ([^,]+)$", r" and \1", offices)
     return f"""<footer class="site-footer">
@@ -299,20 +298,7 @@ def footer():
   </div>
   <div class="wrap footer-base"><span>© {dt.date.today().year} {esc(SET['site_name'])}. All rights reserved.</span><span>Offices in {esc(offices)}</span></div>
 </footer>
-{whatsapp_button()}
   <script src="{asset('/assets/js/site.js')}" defer></script>"""
-
-
-def whatsapp_button():
-    """Floating WhatsApp chat button, shown only when a WhatsApp number is set in /admin."""
-    digits = re.sub(r"\D", "", SET.get("whatsapp") or "")
-    if not digits:
-        return ""
-    from urllib.parse import quote
-    msg = quote(f"Hello {SET['brand_name']}, I have an enquiry from your website.")
-    return (f'<a class="wa-float" href="https://wa.me/{digits}?text={msg}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">'
-            '<svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.8 2 6.8L3 29l6.6-2c1.9 1 4.1 1.6 6.4 1.6 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.3c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1.2 1.2-3.8-.3-.4c-1.1-1.7-1.7-3.6-1.7-5.7C5.2 10 10 5.3 16 5.3S26.8 10 26.8 15.8 22 26.3 16 26.3zm5.9-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>'
-            '<span>Chat on WhatsApp</span></a>')
 
 
 def cta():
@@ -592,7 +578,6 @@ def share_block(title, path):
     return (f'<div class="share" data-share-title="{esc(title)}"><p class="share-label">Share this</p>'
             f'<a class="share-btn" data-share="facebook" href="https://www.facebook.com/sharer/sharer.php?u={u}" rel="noopener" target="_blank">Facebook</a>'
             f'<a class="share-btn" data-share="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url={u}" rel="noopener" target="_blank">LinkedIn</a>'
-            f'<a class="share-btn" data-share="whatsapp" href="https://wa.me/?text={t}%20{u}" rel="noopener" target="_blank">WhatsApp</a>'
             f'<button class="share-btn" type="button" data-share="copy" data-url="{esc(url)}">Copy link</button></div>')
 
 
