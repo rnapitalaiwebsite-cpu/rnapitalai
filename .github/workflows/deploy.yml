@@ -25,10 +25,9 @@ jobs:
         with:
           python-version: "3.12"
       - name: Build site
-        # Review stage: staging banner, hidden from Google, links that work at
-        # rnapitalaiwebsite-cpu.github.io/rnapitalai/. At launch (after the domain
-        # points here) change this line to: run: python3 build.py
-        run: python3 build.py --staging --relative
+        # Live site on napitalaiengineers.com (indexable, no staging banner).
+        # For a review copy instead: run: python3 build.py --staging --relative
+        run: python3 build.py
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
